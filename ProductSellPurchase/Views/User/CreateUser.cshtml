@@ -1,0 +1,57 @@
+﻿@model ProductSellPurchase.ViewModels.CreateUserViewModel
+
+<form id="createUserForm" >
+    
+    <input type="hidden" asp-for="UserId" />
+    
+    <div class="form-group col-md-3">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-3">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-3">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-3">
+        <label asp-for="UserTypeId"></label>
+        <select asp-for="UserTypeId" class="form-control">
+            <option value="" hidden>-- Select Type --</option>
+            @foreach (var userType in Model.UserTypes)
+            {
+                <option value="@userType.UserTypeId">@userType.UserTypeName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group col-md-3 d-flex align-items-center">
+        <div class="form-check">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label class="form-check-label">Is Active</label>
+        </div>
+    </div>
+
+    <div class="form-group col-md-3">
+        <label class="form-label">Add Image</label>
+        <input asp-for="Image" type="file" name="Image" id="Image" class="form-control" accept="image/*" onchange="previewImage(event,'imagePreview')" />
+    </div>
+    <div class="form-group col-md-3">
+        <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 200px;" />
+    </div>
+
+    <button id="createusersubbtn" type="submit" class="btn btn-primary mt-2">Create User</button>
+    <button onclick="UserList()" class="btn btn-secondary mt-2">Cancel</button>
+
+</form>
+

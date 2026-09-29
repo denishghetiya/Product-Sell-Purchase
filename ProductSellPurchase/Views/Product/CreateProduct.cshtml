@@ -1,0 +1,28 @@
+﻿@model ProductSellPurchase.ViewModels.CreateProductViewModel
+
+<h2>Create Product</h2>
+
+<div class="row">
+    <div class="col">
+        <form id="createProductForm" class="p-3">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label asp-for="ProductName"></label>
+                    <input asp-for="ProductName" type="text" id="productname" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" type="number" id="price" class="form-control" />
+                </div>
+            </div>
+            <hr />
+
+            <div class="text-start" style="margin-top: 50px;">
+                <button type="submit" class="btn btn-success" id="submitBtnCreateProduct">Save</button>
+                <a asp-action="ProductList" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

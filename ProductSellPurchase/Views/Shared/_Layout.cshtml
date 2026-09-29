@@ -1,0 +1,89 @@
+﻿@using System.Security.Claims
+@{
+    var userId = User.FindFirstValue("UserID");
+    var userIdd = int.Parse(User.FindFirstValue("UserID"));
+    var email = User.FindFirstValue("Email");
+    var userTypeName = User.FindFirstValue("UserTypeName");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ProductSellPurchase</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ProductSellPurchase.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="" asp-action=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="DashBoard" asp-action="DashBoard">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="optionDropdown" data-bs-toggle="dropdown" aria-expanded="false">Option</button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="optionDropdown">
+                        <li>
+                            <a class="dropdown-item text-primary" href="/Dashboard/EditUser?userId=@userId">
+                                <i class="fa fa-sign-out-alt"></i>&nbsp;Update Profile
+                            </a>
+                            <a class="dropdown-item text-primary" href="/Dashboard/ChangePassword">
+                                <i class="fa fa-sign-out-alt"></i>&nbsp;Change Password
+                            </a>
+                            <a class="dropdown-item text-primary" onclick="Logout()">
+                                <i class="fa fa-sign-out-alt"></i>&nbsp;Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="d-flex">
+        <div class="vertical-nav bg-light border-end" id="sidebar">
+            <div id="sidebarMenu"></div>
+        </div>
+        <div class="content p-4" style="width: 100%;">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    @* <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div> *@
+
+    <script>const currentUserType = '@User.FindFirst("UserTypeName")?.Value';</script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/user.js" asp-append-version="true"></script>
+    <script src="~/js/product.js" asp-append-version="true"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

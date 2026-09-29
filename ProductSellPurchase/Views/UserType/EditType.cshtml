@@ -1,0 +1,63 @@
+﻿@model ProductSellPurchase.ViewModels.UserTypeViewModel
+
+<form id="editTypeForm">
+
+    <input type="hidden" asp-for="UserTypeId" />
+
+    <div class="form-group col-md-3">
+        <label asp-for="UserTypeName"></label>
+        <input asp-for="UserTypeName" class="form-control" />
+    </div>
+
+    <div class="form-group col-md-3 d-flex align-items-center">
+        <div class="form-check">
+            <input asp-for="IsActive" class="form-check-input" />
+            <label class="form-check-label">Is Active</label>
+        </div>
+    </div>
+
+    <table class="table table-bordered" id="pageperTable">
+        <thead class="table-light">
+            <tr>
+                <th>Page</th>
+                @if (Model.Pages.Count > 0)
+                {
+                    foreach (var perm in Model.Pages[0].PermissionType)
+                    {
+                        <th>@perm.PermissionTypeName</th>
+                    }
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Pages.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" name="Pages.Index" value="@i" />
+                        <input type="hidden" name="Pages[@i].PageId" value="@Model.Pages[i].PageId" />
+                        @Model.Pages[i].PageName
+                    </td>
+
+                    @for (int j = 0; j < Model.Pages[i].PermissionType.Count; j++)
+                    {
+                        <td class="text-center">
+                            <input type="hidden" name="Pages[@i].PermissionType.Index" value="@j" />
+                            <input type="hidden" name="Pages[@i].PermissionType[@j].PermissionTypeId"
+                                   value="@Model.Pages[i].PermissionType[j].PermissionTypeId" />
+
+                            <input type="checkbox" asp-for="Pages[@i].PermissionType[@j].Permission" class="form-check-input" />
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button id="editTypeFormSubBtn" type="submit" class="btn btn-success mt-2">Save</button>
+    <button onclick="UserTypeList()" class="btn btn-secondary mt-2">Cancel</button>
+
+</form>
+
+

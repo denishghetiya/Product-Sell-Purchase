@@ -1,0 +1,59 @@
+﻿@model ProductSellPurchase.ViewModels.RegisterUserViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 400px;">
+        <h2 class="text-center">Register User</h2>
+        <form id="registerform" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input asp-for="Username" type="text" id="Username" name="Username" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" type="email" id="Email" name="Email" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input asp-for="Password" type="password" id="Password" name="Password" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ConfirmPassword</label>
+                <input asp-for="ConfirmPassword" type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Add Image</label>
+                <input asp-for="Image" type="file" name="Image" id="Image" class="form-control" accept="image/*" onchange="previewImage(event,'imagePreview')" />
+            </div>
+            <div class="mb-3">
+                <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; max-height: 200px;" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" id="registerformbtn">Register</button>
+        </form>
+        <a class="" asp-action="Login">Login</a>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
